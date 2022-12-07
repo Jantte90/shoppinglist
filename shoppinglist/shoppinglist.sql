@@ -4,16 +4,19 @@ create database shoppinglist;
 
 use shoppinglist;
 
-create table item (
-    id int primary key auto_increment,
-    description varchar(255) not null,
-    amount smallint unsigned not null
+CREATE TABLE user(  
+    username VARCHAR(255) NOT NULL PRIMARY KEY,
+    passwd VARCHAR(255) NOT NULL
 );
 
-insert into item (description,amount) values ("Omenia",3);
+CREATE TABLE ostoslista(  
+    id INTEGER PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    tuote VARCHAR(255),
+    FOREIGN KEY (username) REFERENCES user(username)
+);
 
-insert into item (description,amount) values ("Munia",30);
+INSERT INTO user (username, passwd) VALUES ("Janne", "Janne1234"), ("Danielle", "Danielle1234");
 
-insert into item (description,amount) values ("Jauhelihaa",2);
-
-insert into item (description,amount) values ("Maitoa",4);
+INSERT INTO ostoslista (username, tuote) VALUES ("Janne","Omenoita"),
+("Janne","Maitoa"),("Danielle","Munia"),("Danielle","Kaurapuuroa");
