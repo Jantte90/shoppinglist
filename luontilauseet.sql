@@ -1,13 +1,3 @@
-drop database if exists shoppinglist;
-
-create database shoppinglist;
-
-use shoppinglist;
-
-CREATE TABLE user(  
-    username VARCHAR(255) NOT NULL PRIMARY KEY,
-    passwd VARCHAR(255) NOT NULL
-);
 
 CREATE TABLE user(  
     username VARCHAR(255) NOT NULL PRIMARY KEY,
@@ -30,3 +20,5 @@ INSERT INTO user (username, passwd) VALUES ("Janne", "Janne1234"), ("Danielle", 
 
 INSERT INTO ostoslista (username, tuote) VALUES ("Janne","Omenoita"),
 ("Janne","Maitoa"),("Danielle","Munia"),("Danielle","Kaurapuuroa");
+
+INSERT INTO ADMIN (username, level) VALUES ("Janne",1);
