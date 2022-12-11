@@ -16,7 +16,7 @@
 			break;
 			
 			case "getUsers":
-				$query = 'select user from ostoslista';
+				$query = 'select username from user';
 			break;
 			
 			

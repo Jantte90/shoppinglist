@@ -1,5 +1,5 @@
 <?php
-	require('./include/headers.php');
+	require('./include/header.php');
 	require_once('./include/functions.php');
 
     $db = openSQLite();
@@ -8,29 +8,6 @@
 		$action = $_GET["action"];
 		
 		switch ($action) {
-			case "getUser":
-            	if (isset($_GET["userName"])) {
-					session_start();
-					if ($_GET["userName"] == $_SESSION["username"]) {
-           			$query = "SELECT username, password, fname, lname, address, postalcode, city, email, phone FROM USER";
-                  	$query = $query . " WHERE username = '" . $_SESSION["username"] . "'";
-					} else {
-						http_response_code(403);
-						echo "Forbidden, provided username doesn't match session data";
-						return;
-					}
-                } else {
-					http_response_code(400);
-					echo "Missing argument";
-					return;
-				} try {
-					$json = selectAsJson($db, $query);
-					$json = json_encode($json);
-					echo $json;
-				} catch (PDOException $pdoex) {
-					returnError($pdoex);
-				}
-            	break;
 
 			case "loginSession":
 				session_start();
@@ -46,16 +23,16 @@
 			case "login":
 				if (
 					isset($_POST["username"]) &&
-					isset($_POST['password'])
+					isset($_POST['passwd'])
 				) {
-					$password = urlencode($_POST['password']);
+					$password = urlencode($_POST['passwd']);
 					$username = urlencode($_POST['username']);
 					
-					$query = "SELECT password from USER where username = '" . $username ."'";
+					$query = "SELECT passwd from USER where username = '" . $username ."'";
 					$hash = selectAsJson($db, $query);
 					if (count($hash) == 1) {
-						$hash = $hash[0]["password"];
-						if (password_verify($_POST['password'], $hash)) {
+						$hash = $hash[0]["passwd"];
+						if (password_verify($_POST['passwd'], $hash)) {
 							session_start();
 							$_SESSION['username'] = $_POST["username"];
 							$data["username"] = $_POST["username"];
@@ -68,17 +45,17 @@
 							echo "Internal server error";
 						}
 					} else {
-						echo "Invalid username or password";
+						echo "Väärä käyttäjänimi tai salasana";
 					}
 				} else {
-					echo "Login failed, missing information";
+					echo "Login failed, puuttuu tietoa.";
 				}
 				break;
 			case "logout":
 				session_start();
 				unset($_SESSION["username"]);
 				http_response_code(200);
-				echo "Logged out";
+				echo "Olet kirjautunut ulos";
         } 
     } else {
 		echo "no action";
