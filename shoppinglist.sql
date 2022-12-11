@@ -9,6 +9,16 @@ CREATE TABLE user(
     passwd VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE user(  
+    username VARCHAR(255) NOT NULL PRIMARY KEY,
+    passwd VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE admin(  
+    username VARCHAR(255) NOT NULL PRIMARY KEY,
+    level VARCHAR(255) NOT NULL
+);
+
 CREATE TABLE ostoslista(  
     id INTEGER PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
