@@ -1,4 +1,10 @@
+
 Tietokantaohjelmoinnin harjoitustyö.
+
+Esivaatimukset: 
+Postman
+Visual Studio Code
+PHP Server -extension (Laajennuksen asetuksista portiksi 3001 -> Serve Project)
 
 Yksinkertainen ostoslista PHP backend tietokantoineen, johon on käyttäjiä ja adminkäyttäjiä.
 
